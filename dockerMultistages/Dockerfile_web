@@ -1,0 +1,9 @@
+#Solo use && para concatenar las instrucciones en los Run
+
+FROM golang:latest
+
+WORKDIR /app
+COPY dispatcher.go .
+RUN go mod init main && go build -o /dispatcher
+
+CMD [ "/dispatcher" ]

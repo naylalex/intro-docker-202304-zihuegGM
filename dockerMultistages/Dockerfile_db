@@ -1,0 +1,7 @@
+#No veo mayor mejora, solo tiene una ejecucion de un Run, la asignacion de la variable de entorno,
+#y se especifica el archivo que se copiara para ser ejecutado.
+FROM postgres 
+
+ENV POSTGRES_HOST_AUTH_METHOD=trust
+
+COPY words.sql /docker-entrypoint-initdb.d/
