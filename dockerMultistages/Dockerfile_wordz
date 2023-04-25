@@ -4,7 +4,7 @@ COPY words /app
 WORKDIR /app 
 RUN mvn verify
 
-FROM openjdk:14-jdk-alpine
+FROM openjdk:11-jre-alpine
 WORKDIR /home/app 
 COPY --from=app /app/target ./target
 
