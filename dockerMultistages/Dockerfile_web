@@ -1,4 +1,6 @@
 #Solo use && para concatenar las instrucciones en los Run
+#y la multi etapa  la deje una para compilar y
+#y un sistemas mas liviano para ejecutarlo
 
 FROM golang:latest as builder
 
