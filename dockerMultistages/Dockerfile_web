@@ -1,9 +1,12 @@
 #Solo use && para concatenar las instrucciones en los Run
 
-FROM golang:latest
+FROM golang:latest as builder
 
 WORKDIR /app
 COPY dispatcher.go .
 RUN go mod init main && go build -o /dispatcher
 
+FROM alpine
+WORKDIR /home/builder
+COPY --from=builder . .
 CMD [ "/dispatcher" ]
