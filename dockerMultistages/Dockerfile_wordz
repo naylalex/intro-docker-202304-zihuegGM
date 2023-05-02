@@ -1,0 +1,15 @@
+#Se uso la multietapa, primero para actualziar el maven y despues
+#se uso el jr3 por ser mas ligero
+FROM maven:3.6.3-jdk-14 as app
+COPY words /app
+WORKDIR /app 
+RUN mvn verify
+
+FROM openjdk:11-jre-alpine
+WORKDIR /home/app 
+COPY --from=app /app/target ./target
+RUN adduser -D user
+USER user
+
+CMD [ "java","-Xmx8m", "-Xms8m", "-jar", "/build/target/words.jar" ]
+EXPOSE 8080

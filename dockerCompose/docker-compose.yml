@@ -1,0 +1,28 @@
+#Tomando el Ejemplo de lo visto en clase dividi el archivo de docker compose a nivel del directorio wordsmith
+#especificando en cada build la carpeta donde pudiese acceder a los Docker files ya trabajados con anterioridad
+#solo preocupandome de pasarle bien los command y verificando que se construyeran las 3 imagenes depues de dar el build
+version: "3"
+
+services:
+  db:
+    build: db
+    ports: 
+      - ${PORT-8000}:5000
+    user: nobody
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  web: 
+    build: web
+    ports:
+      - ${PORT-8000}:5000
+    user: nobody
+    command: [ "/dispatcher" ]
+
+  words:
+    build: words
+    ports:
+      - ${PORT-8000}:5000
+    user: nobody
+    command: [ "java", "-Xmx8m", "-Xms8m", "-jar", "target/words.jar" ]
+    
