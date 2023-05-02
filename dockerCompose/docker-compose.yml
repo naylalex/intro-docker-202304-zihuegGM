@@ -1,3 +1,6 @@
+#Tomando el Ejemplo de lo visto en clase dividi el archivo de docker compose a nivel del directorio wordsmith
+#especificando en cada build la carpeta donde pudiese acceder a los Docker files ya trabajados con anterioridad
+#solo preocupandome de pasarle bien los command y verificando que se construyeran las 3 imagenes depues de dar el build
 version: "3"
 
 services:
