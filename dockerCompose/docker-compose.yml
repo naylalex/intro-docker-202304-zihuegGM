@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  db:
+    build: db
+    ports: 
+      - ${PORT-8000}:5000
+    user: nobody
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  web: 
+    build: web
+    ports:
+      - ${PORT-8000}:5000
+    user: nobody
+    command: [ "/dispatcher" ]
+
+  words:
+    build: words
+    ports:
+      - ${PORT-8000}:5000
+    user: nobody
+    command: [ "java", "-Xmx8m", "-Xms8m", "-jar", "target/words.jar" ]
+    
